@@ -65,9 +65,9 @@ class Spell:
         else:
             return int(re.match(r'(\d)', lvl).group(0))
 
-    @property
-    def pc_class(self):
-        return self.entry.get('class').split(', ')
+    #@property
+    #def pc_class(self):
+        #return self.entry.get('class').lower().split(', ')
 
     @property
     def saving_throw(self):
@@ -101,22 +101,22 @@ enchantment_spells = []
 
 for entry in data:
     spell = Spell(entry)
-    if 'Bard' in spell.pc_class:
-        bard_spells.append(spell)
-    if 'Cleric' in spell.pc_class:
-        cleric_spells.append(spell)
-    if 'Druid' in spell.pc_class:
-        druid_spells.append(spell)
-    if 'Paladin' in spell.pc_class:
-        paladin_spells.append(spell)
-    if 'Ranger' in spell.pc_class:
-        ranger_spells.append(spell)
-    if 'Sorceror' in spell.pc_class:
-        sorceror_spells.append(spell)
-    if 'Wizard' in spell.pc_class:
-        wizard_spells.append(spell)
-    if 'Warlock' in spell.pc_class:
-        warlock_spells.append(spell)
+    #if 'Bard' in spell.pc_class:
+        #bard_spells.append(spell)
+    #if 'Cleric' in spell.pc_class:
+        #cleric_spells.append(spell)
+    #if 'Druid' in spell.pc_class:
+        #druid_spells.append(spell)
+    #if 'Paladin' in spell.pc_class:
+        #paladin_spells.append(spell)
+    #if 'Ranger' in spell.pc_class:
+        #ranger_spells.append(spell)
+    #if 'Sorceror' in spell.pc_class:
+        #sorceror_spells.append(spell)
+    #if 'Wizard' in spell.pc_class:
+        #wizard_spells.append(spell)
+    #if 'Warlock' in spell.pc_class:
+        #warlock_spells.append(spell)
 
     # Del says only Bards, Clerics, Druids, and Wizards can cast all of their
     # spells as rituals.  There are special rules for Paladins, Rangers, and
@@ -142,10 +142,12 @@ def ie(n):
         if s.level is n:
             print(s.name, s.level)
 
-# if __name__ == '__main__':
-#     with open('spellData.json', 'r') as f:
-#         data = json.load(f)
+if __name__ == '__main__':
+    with open('spellData.json', 'r') as f:
+        data = json.load(f)
 
-#     for spell in data:
-#         if 'paladin' in spell.pc_class.lower():
-#             paladin_spells.append(s)
+    for spell in data:
+        print(spell)
+    #for spell in data:
+        #if 'paladin' in spell.pc_class.lower():
+            #paladin_spells.append(s)
