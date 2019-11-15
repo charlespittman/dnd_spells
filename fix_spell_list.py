@@ -23,8 +23,11 @@ def main():
         assert s['school'] in SCHOOLS
 
         for b in ['concentration', 'ritual']:
-            if isinstance(s[b], str):
-                s[b] = str_bool(s[b])
+            try:
+                if isinstance(s[b], str):
+                    s[b] = str_bool(s[b])
+            except KeyError:
+                s[b] = None
 
         for l in ['components', 'class']:
             if isinstance(s[l], str):

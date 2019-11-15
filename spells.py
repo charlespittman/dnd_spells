@@ -33,7 +33,7 @@ class Spell:
         return 'Spell({}, {})'.format(self.name, self.description)
 
     def __str__(self):
-        return 'Name: "{}", Level: {}'.format(self.name, self.level)
+        return 'Name: "{}", Level: {}, School: {}'.format(self.name, self.level, self.school)
 
     @property
     def ritual(self):
@@ -65,9 +65,9 @@ class Spell:
         else:
             return int(re.match(r'(\d)', lvl).group(0))
 
-    #@property
-    #def pc_class(self):
-        #return self.entry.get('class').lower().split(', ')
+    @property
+    def pc_class(self):
+        return self.entry.get('class').lower().split(', ')
 
     @property
     def saving_throw(self):
@@ -101,22 +101,22 @@ enchantment_spells = []
 
 for entry in data:
     spell = Spell(entry)
-    #if 'Bard' in spell.pc_class:
-        #bard_spells.append(spell)
-    #if 'Cleric' in spell.pc_class:
-        #cleric_spells.append(spell)
-    #if 'Druid' in spell.pc_class:
-        #druid_spells.append(spell)
-    #if 'Paladin' in spell.pc_class:
-        #paladin_spells.append(spell)
-    #if 'Ranger' in spell.pc_class:
-        #ranger_spells.append(spell)
-    #if 'Sorceror' in spell.pc_class:
-        #sorceror_spells.append(spell)
-    #if 'Wizard' in spell.pc_class:
-        #wizard_spells.append(spell)
-    #if 'Warlock' in spell.pc_class:
-        #warlock_spells.append(spell)
+    if 'bard' in spell.pc_class:
+        bard_spells.append(spell)
+    if 'cleric' in spell.pc_class:
+        cleric_spells.append(spell)
+    if 'druid' in spell.pc_class:
+        druid_spells.append(spell)
+    if 'paladin' in spell.pc_class:
+        paladin_spells.append(spell)
+    if 'ranger' in spell.pc_class:
+        ranger_spells.append(spell)
+    if 'sorceror' in spell.pc_class:
+        sorceror_spells.append(spell)
+    if 'wizard' in spell.pc_class:
+        wizard_spells.append(spell)
+    if 'warlock' in spell.pc_class:
+        warlock_spells.append(spell)
 
     # Del says only Bards, Clerics, Druids, and Wizards can cast all of their
     # spells as rituals.  There are special rules for Paladins, Rangers, and
@@ -141,6 +141,13 @@ def ie(n):
     for s in enchantment_spells + illusion_spells:
         if s.level is n:
             print(s.name, s.level)
+
+def overview(sb):
+    for lvl in range(10):
+        print("----Level {}----".format(lvl))
+        for s in sb:
+            if s.level == lvl:
+                print("{} ({})".format(s.name, s.school))
 
 if __name__ == '__main__':
     with open('spellData.json', 'r') as f:
